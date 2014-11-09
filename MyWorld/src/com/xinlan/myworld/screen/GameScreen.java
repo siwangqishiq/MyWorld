@@ -74,17 +74,8 @@ public class GameScreen implements Screen
      */
     private void updateCamera()
     {
-        int cameraDx = 0;
-        if (Gdx.input.isKeyPressed(Keys.LEFT))
-        {
-            cameraDx -= CAMREA_SPEED;
-        }
-        if (Gdx.input.isKeyPressed(Keys.RIGHT))
-        {
-            cameraDx += CAMREA_SPEED;
-        }
-
-        float will = camera.position.x + cameraDx;
+        camera.position.x = mRobot.pos.x;
+        float will = camera.position.x;
         if (will <= cameraLeftSide)
         {
             camera.position.x = cameraLeftSide;
