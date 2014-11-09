@@ -32,7 +32,7 @@ public class GameScreen implements Screen
     private TiledMap tiledMap;// ÍßÆ¬µØÍ¼
     private Batch batch;
     
-    protected Robot mRobot;
+    public Robot mRobot;
 
     public GameScreen(MyWorld mMyWorld)
     {

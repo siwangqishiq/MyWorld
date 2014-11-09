@@ -20,19 +20,22 @@ public class Robot
     private Animation animationRight;
     private Animation animationLeft;
     private Texture texture;
+    private Texture waitTexture;
     private float timeDelta;
     private float width = 32;
     private float height = 32;
     public Vector2 pos = new Vector2();
     public Vector2 velocity = new Vector2();
     public int dir;
-
+    private TextureRegion waitRegionLeft,waitRegionRight;
+    public int state;
+    
+    
     public Robot(GameScreen mContext)
     {
         this.mContext = mContext;
         texture = new Texture("asset/robot.png");
         TextureRegion[] manRegions = TextureRegion.split(texture, 32, 32)[0];
-
         // manRegions[0].flip(true, false);
         animationRight = new Animation(AnimationDuring, manRegions[0],
                 manRegions[1], manRegions[2], manRegions[3]);
@@ -60,13 +63,19 @@ public class Robot
         if (Gdx.input.isKeyPressed(Keys.LEFT))
         {
             dir = DIR_LEFT;
-            velocity.x = -2;
+            velocity.x = -3;
         }
 
         if (Gdx.input.isKeyPressed(Keys.RIGHT))
         {
             dir = DIR_RIGHT;
-            velocity.x = 2;
+            velocity.x = 3;
+        }
+        
+        if (Gdx.input.isKeyPressed(Keys.X))
+        {
+            dir = DIR_RIGHT;
+            velocity.x +=10;
         }
 
         pos.add(velocity);
@@ -76,8 +85,8 @@ public class Robot
     {
         Animation showAnimation = dir == DIR_LEFT ? animationLeft
                 : animationRight;
-
         TextureRegion textureRegion = showAnimation.getKeyFrame(timeDelta);
+        
         batch.begin();
         batch.draw(textureRegion, pos.x, pos.y, width, height);
         batch.end();
