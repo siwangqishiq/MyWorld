@@ -27,10 +27,9 @@ public class Robot
     public Vector2 pos = new Vector2();
     public Vector2 velocity = new Vector2();
     public int dir;
-    private TextureRegion waitRegionLeft,waitRegionRight;
+    private TextureRegion waitRegionLeft, waitRegionRight;
     public int state;
-    
-    
+
     public Robot(GameScreen mContext)
     {
         this.mContext = mContext;
@@ -60,25 +59,47 @@ public class Robot
     {
         timeDelta += delta;
         velocity.x = 0;
-        if (Gdx.input.isKeyPressed(Keys.LEFT))
+        if (Gdx.input.isKeyPressed(Keys.LEFT) || isTouched(0, 0.25f))
         {
             dir = DIR_LEFT;
             velocity.x = -3;
         }
 
-        if (Gdx.input.isKeyPressed(Keys.RIGHT))
+        if (Gdx.input.isKeyPressed(Keys.RIGHT) || isTouched(0.25f, 0.5f))
         {
             dir = DIR_RIGHT;
             velocity.x = 3;
         }
-        
+
         if (Gdx.input.isKeyPressed(Keys.X))
         {
             dir = DIR_RIGHT;
-            velocity.x +=10;
+            velocity.x += 10;
         }
 
         pos.add(velocity);
+
+        if (pos.x < 0)
+        {
+            pos.x = 0;
+        }
+        else if (pos.x > GameScreen.WORLD_WIDTH - width)
+        {
+            pos.x = GameScreen.WORLD_WIDTH - width;
+        }
+    }
+
+    private boolean isTouched(float startX, float endX)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            float x = Gdx.input.getX() / (float) Gdx.graphics.getWidth();
+            if (Gdx.input.isTouched(i) && (x >= startX && x <= endX))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void render(float delta, Batch batch)
@@ -86,7 +107,7 @@ public class Robot
         Animation showAnimation = dir == DIR_LEFT ? animationLeft
                 : animationRight;
         TextureRegion textureRegion = showAnimation.getKeyFrame(timeDelta);
-        
+
         batch.begin();
         batch.draw(textureRegion, pos.x, pos.y, width, height);
         batch.end();
