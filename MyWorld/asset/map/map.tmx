@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="300" height="10" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="cloud" tilewidth="32" tileheight="32">
+  <image source="cloud.png" trans="dcdeff" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="5" name="tile" tilewidth="32" tileheight="32">
+  <image source="tile.png" trans="dcdeff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="6" name="地形3" tilewidth="32" tileheight="32">
+  <image source="t2.png" trans="dcdeff" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="7" name="moutain" tilewidth="32" tileheight="32">
+  <image source="moutain.png" trans="dcdeff" width="146" height="60"/>
+ </tileset>
+ <tileset firstgid="11" name="m2" tilewidth="32" tileheight="32">
+  <image source="m2.png" trans="dcdeff" width="32" height="64"/>
+ </tileset>
+ <layer name="background" width="300" height="10">
+  <data encoding="base64" compression="zlib">
+   eJztl40KwyAMhO022I99/+edgxWG6BbjGdP1PgiU1iYXo6ZdQgingGcR+t3GScdrY2r8e3gHMS9Icj3I+hHyi3Oyy0S/2ziEjm8+NP49vNPiz+LMyPVo69erdVSuo/smCq/9Aa1rL/WwjG+Vz+g40jNjdv1eaM71T93IPlvy2zNHCB/SGFpq2no1o/vr6O8YC9DxrfKZPW8bXnS0YvkvYLVPZvWOmjbLtbHXdUjIUeGeJYSQ/+aa7JbsnuwhuF8iKp9JadEioUeTVAsibwQWufbGtZir+LbW+o3QFgvX2jjovYGIV8uldr/kM68VklX5bBYWmrzkPUtHS1yremg0jdC2Fq69rBcEtVy8rQlCCCGEkCPzBJrqBCY=
+  </data>
+ </layer>
+ <layer name="块层 2" width="300" height="10">
+  <data encoding="base64" compression="zlib">
+   eJztw7EJAAAIA7Au+v/JPuGgkEASAAAAAAAAAIBbSvXJVlV19QDzshPt
+  </data>
+ </layer>
+</map>
