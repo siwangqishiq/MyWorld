@@ -5,10 +5,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.xinlan.myworld.MyWorld;
+import com.xinlan.myworld.role.Robot;
 
 public class GameScreen implements Screen
 {
@@ -27,6 +30,9 @@ public class GameScreen implements Screen
     private OrthographicCamera camera;
     private OrthogonalTiledMapRenderer mapRender;// µÿÕº‰÷»æ∆˜
     private TiledMap tiledMap;// Õﬂ∆¨µÿÕº
+    private Batch batch;
+    
+    protected Robot mRobot;
 
     public GameScreen(MyWorld mMyWorld)
     {
@@ -42,6 +48,9 @@ public class GameScreen implements Screen
 
         tiledMap = new TmxMapLoader().load("asset/map/map.tmx");
         mapRender = new OrthogonalTiledMapRenderer(tiledMap, 1f);
+        batch = mapRender.getSpriteBatch();
+        
+        mRobot = new Robot(this);
     }
 
     @Override
@@ -50,12 +59,14 @@ public class GameScreen implements Screen
         // System.out.println(deltaTime);
         Gdx.gl.glClearColor(0.45f, 0.8f, 1.0f, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        
+        mRobot.update(deltaTime);
         updateCamera();
 
         // µÿÕº‰÷»æ
         mapRender.setView(camera);
         mapRender.render();
+        mRobot.render(deltaTime, batch);
     }
 
     /**
@@ -92,6 +103,7 @@ public class GameScreen implements Screen
     @Override
     public void dispose()
     {
+        mRobot.dispose();
     }
 
     @Override
